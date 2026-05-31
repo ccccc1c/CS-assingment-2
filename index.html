@@ -196,8 +196,32 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .equip-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:5px;background:var(--bg3);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:4px;}
 .equip-tag:hover{border-color:var(--purple);color:var(--purple);}
 
+/* PREVIEW SECTIONS */
+.preview-sections{max-width:900px;margin:0 auto;padding:4rem 1.5rem;}
+.preview-section{margin-bottom:6rem;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.preview-section.visible{opacity:1;transform:translateY(0);}
+.preview-section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.15em;margin-bottom:12px;}
+.preview-section-title{font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:8px;line-height:1.2;}
+.preview-section-desc{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:2rem;max-width:520px;font-weight:300;}
+.preview-images{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.preview-img-wrap{border-radius:16px;overflow:hidden;box-shadow:var(--shadow2);border:1px solid var(--border);transition:transform .2s,box-shadow .2s;}
+.preview-img-wrap:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12);}
+.preview-img-wrap img{width:100%;height:auto;display:block;}
+@media(max-width:600px){.preview-images{grid-template-columns:1fr;}}
 .loading{display:none;position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
-[data-theme="dark"] .loading{background:rgba(8,8,16,.93);}
+[data-theme="dark"] /* PREVIEW SECTIONS */
+.preview-sections{max-width:900px;margin:0 auto;padding:4rem 1.5rem;}
+.preview-section{margin-bottom:6rem;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.preview-section.visible{opacity:1;transform:translateY(0);}
+.preview-section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.15em;margin-bottom:12px;}
+.preview-section-title{font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:8px;line-height:1.2;}
+.preview-section-desc{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:2rem;max-width:520px;font-weight:300;}
+.preview-images{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.preview-img-wrap{border-radius:16px;overflow:hidden;box-shadow:var(--shadow2);border:1px solid var(--border);transition:transform .2s,box-shadow .2s;}
+.preview-img-wrap:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12);}
+.preview-img-wrap img{width:100%;height:auto;display:block;}
+@media(max-width:600px){.preview-images{grid-template-columns:1fr;}}
+.loading{background:rgba(8,8,16,.93);}
 .loading.on{display:flex;}
 .spinner{width:28px;height:28px;border:2px solid var(--bg4);border-top-color:var(--purple);border-radius:50%;animation:spin .75s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -226,6 +250,41 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="main-card card-library" onclick="nav('library')"><div class="card-icon">📚</div><div class="card-title">운동 라이브러리</div><div class="card-desc">부위별 핵심 운동 목록과 난이도를 확인해요</div><div class="card-arrow">↗</div></div>
     </div>
     <div class="main-badges"><span class="badge">헬스장 기준</span><span class="badge">주 1~7일</span><span class="badge">근육량 증가 / 벌크업 / 컷팅 / 다이어트</span><span class="badge">핵심 운동만</span></div>
+  </div>
+
+  <!-- PREVIEW SECTIONS -->
+  <div class="preview-sections">
+
+    <div class="preview-section" data-observe>
+      <div class="preview-section-eyebrow">PERSONALIZATION</div>
+      <div class="preview-section-title">나에게 딱 맞는<br><span class="grad-text">조건으로 시작해요.</span></div>
+      <div class="preview-section-desc">성별, 체지방률, 운동 경력, 목적까지 — 세밀한 개인화 설정으로 나만의 루틴을 만들어요.</div>
+      <div class="preview-images">
+        <div class="preview-img-wrap"><img src="option1.jpg" alt="개인화 설정 화면 1"/></div>
+        <div class="preview-img-wrap"><img src="option2.jpg" alt="개인화 설정 화면 2"/></div>
+      </div>
+    </div>
+
+    <div class="preview-section" data-observe>
+      <div class="preview-section-eyebrow">ROUTINE RECOMMENDATION</div>
+      <div class="preview-section-title">조건에 맞는 루틴을<br><span class="grad-text">바로 확인해요.</span></div>
+      <div class="preview-section-desc">입력한 조건에 따라 일주일 루틴이 자동으로 생성돼요. 요일별 운동 목록을 한눈에 확인하세요.</div>
+      <div class="preview-images">
+        <div class="preview-img-wrap"><img src="routine1.jpg" alt="루틴 추천 화면 1"/></div>
+        <div class="preview-img-wrap"><img src="routine2.jpg" alt="루틴 추천 화면 2"/></div>
+      </div>
+    </div>
+
+    <div class="preview-section" data-observe>
+      <div class="preview-section-eyebrow">EXERCISE LIBRARY</div>
+      <div class="preview-section-title">꼭 필요한 운동만,<br><span class="grad-text">컴팩트하게.</span></div>
+      <div class="preview-section-desc">불필요한 운동은 과감히 빼고 핵심 운동만 부위별로 정리했어요. 장비별 난이도까지 한눈에 확인하세요.</div>
+      <div class="preview-images">
+        <div class="preview-img-wrap"><img src="library1.jpg" alt="라이브러리 화면 1"/></div>
+        <div class="preview-img-wrap"><img src="library2.jpg" alt="라이브러리 화면 2"/></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -858,6 +917,18 @@ function updateBfRecommend(){
   }
   rec.className='bf-recommend '+type;rec.textContent=msg;rec.style.display='flex';
 }
+
+// SCROLL ANIMATION
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
 
 function nav(p){
   if(p==='library')renderLibrary();
