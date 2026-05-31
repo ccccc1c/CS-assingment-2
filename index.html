@@ -3,217 +3,124 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PhysiqueLab — 운동 루틴 메이커</title>
+<title>PhysiqueLab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ── LIGHT THEME (default) ── */
-:root {
-  --bg:      #ffffff;
-  --bg2:     #f8f8fb;
-  --bg3:     #f0f0f5;
-  --bg4:     #e8e8f0;
-  --border:  rgba(0,0,0,0.07);
-  --border2: rgba(0,0,0,0.13);
-  --text:    #0f0f1a;
-  --text2:   #5a5a7a;
-  --text3:   #aaaacc;
-  --shadow:  0 2px 12px rgba(0,0,0,0.06);
-  --shadow2: 0 4px 24px rgba(0,0,0,0.08);
-  --purple:  #7c3aed;
-  --blue:    #2563eb;
-  --pink:    #db2777;
-  --green:   #059669;
-  --amber:   #d97706;
-  --grad:    linear-gradient(135deg,#7c3aed,#2563eb,#db2777);
-  --grad2:   linear-gradient(135deg,#7c3aed,#2563eb,#db2777);
-  --font:    'Pretendard',-apple-system,sans-serif;
-  --mono:    'DM Mono',monospace;
-}
-
-/* ── DARK THEME ── */
-[data-theme="dark"] {
-  --bg:      #080810;
-  --bg2:     #10101e;
-  --bg3:     #18182c;
-  --bg4:     #20203a;
-  --border:  rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.14);
-  --text:    #f0f0ff;
-  --text2:   #8888aa;
-  --text3:   #44445a;
-  --shadow:  0 2px 12px rgba(0,0,0,0.3);
-  --shadow2: 0 4px 24px rgba(0,0,0,0.4);
-  --purple:  #a78bfa;
-  --blue:    #60a5fa;
-  --pink:    #f472b6;
-  --green:   #34d399;
-  --amber:   #fbbf24;
-}
-
-*{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:14px;}
+:root{--bg:#fff;--bg2:#f8f8fb;--bg3:#f0f0f5;--bg4:#e8e8f0;--border:rgba(0,0,0,.07);--border2:rgba(0,0,0,.13);--text:#0f0f1a;--text2:#5a5a7a;--text3:#aaaacc;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow2:0 4px 24px rgba(0,0,0,.08);--purple:#7c3aed;--blue:#2563eb;--pink:#db2777;--green:#059669;--amber:#d97706;--red:#dc2626;--grad:linear-gradient(135deg,#7c3aed,#2563eb,#db2777);--font:'Pretendard',-apple-system,sans-serif;--mono:'DM Mono',monospace;}
+[data-theme="dark"]{--bg:#080810;--bg2:#10101e;--bg3:#18182c;--bg4:#20203a;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.14);--text:#f0f0ff;--text2:#8888aa;--text3:#44445a;--shadow:0 2px 12px rgba(0,0,0,.3);--shadow2:0 4px 24px rgba(0,0,0,.4);--purple:#a78bfa;--blue:#60a5fa;--pink:#f472b6;--green:#34d399;--amber:#fbbf24;--red:#f87171;}
+*{box-sizing:border-box;margin:0;padding:0;}html{font-size:14px;}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .2s,color .2s;}
-.page{display:none;min-height:100vh;}
-.page.active{display:block;}
-
+.page{display:none;min-height:100vh;}.page.active{display:block;}
 .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-/* ── TOPBAR ── */
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.875rem 1.5rem;background:var(--bg);
-  border-bottom:1px solid var(--border);
-  gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;
-  box-shadow:var(--shadow);
-}
-.tb-left{display:flex;align-items:center;gap:10px;}
-.back-btn{
-  background:var(--bg3);border:1px solid var(--border2);color:var(--text2);
-  border-radius:7px;padding:5px 12px;font-size:12px;font-weight:500;
-  cursor:pointer;font-family:var(--font);transition:all .15s;
-}
-.back-btn:hover{color:var(--text);border-color:var(--border2);}
-.tb-logo{font-family:var(--mono);font-size:14px;font-weight:500;cursor:pointer;letter-spacing:-.3px;}
+.topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:.875rem 1.5rem;background:var(--bg);border-bottom:1px solid var(--border);gap:12px;position:sticky;top:0;z-index:20;box-shadow:var(--shadow);}
+.tb-left{display:flex;align-items:center;gap:10px;}.tb-center{display:flex;align-items:center;justify-content:center;gap:8px;}.tb-right{display:flex;align-items:center;justify-content:flex-end;}
+.tb-logo{font-family:var(--mono);font-size:18px;font-weight:700;cursor:pointer;letter-spacing:-.5px;}
 .tb-logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.tb-title{font-size:15px;font-weight:700;}
-.tb-meta{font-family:var(--mono);font-size:11px;color:var(--text3);}
-
-/* 다크모드 토글 */
-.theme-toggle{
-  display:flex;align-items:center;gap:8px;
-  background:var(--bg3);border:1px solid var(--border2);
-  border-radius:20px;padding:5px 12px;cursor:pointer;
-  font-size:12px;color:var(--text2);transition:all .15s;
-  font-family:var(--mono);
-}
+.tb-meta{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px;}
+.back-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all .15s;}
+.back-btn:hover{color:var(--text);}
+.nav-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:7px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;}
+.nav-btn:hover{color:var(--text);}
+.nav-btn.active{color:var(--purple);border-color:var(--purple);background:rgba(124,58,237,.08);}
+.theme-toggle{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:12px;color:var(--text2);font-family:var(--mono);transition:all .15s;}
 .theme-toggle:hover{color:var(--text);}
-.toggle-icon{font-size:14px;}
 
-/* ══ PAGE 0: MAIN ══ */
-#page-main{}
-[data-theme="dark"] #page-main{position:relative;overflow:hidden;}
 .blob{display:none;position:absolute;border-radius:50%;filter:blur(90px);opacity:.15;pointer-events:none;}
 [data-theme="dark"] .blob{display:block;}
 .blob1{width:500px;height:500px;background:radial-gradient(circle,#7c3aed,transparent);top:-120px;left:-120px;}
 .blob2{width:400px;height:400px;background:radial-gradient(circle,#2563eb,transparent);top:200px;right:-100px;}
 .blob3{width:350px;height:350px;background:radial-gradient(circle,#db2777,transparent);bottom:-60px;left:35%;}
-
+#page-main{position:relative;overflow:hidden;}
 .main-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:5rem 1.5rem 4rem;}
-.main-eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--mono);font-size:11px;color:var(--text2);
-  background:var(--bg3);border:1px solid var(--border2);
-  border-radius:20px;padding:5px 14px;margin-bottom:2rem;
-}
+.main-eyebrow{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:5px 14px;margin-bottom:1.5rem;}
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.main-brand{font-family:var(--mono);font-size:40px;font-weight:700;letter-spacing:-1px;margin-bottom:.5rem;}
 .main-title{font-size:52px;font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1.25rem;}
 .main-desc{font-size:16px;color:var(--text2);line-height:1.75;margin-bottom:3rem;font-weight:300;max-width:480px;}
-
 .main-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:2.5rem;}
-.main-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:20px;padding:1.75rem;cursor:pointer;
-  transition:all .2s;position:relative;overflow:hidden;
-  box-shadow:var(--shadow);
-}
+.main-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:1.75rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+.main-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;border-radius:20px;}
+.main-card.card-routine::before{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(37,99,235,.08));}
+.main-card.card-library::before{background:linear-gradient(135deg,rgba(219,39,119,.12),rgba(124,58,237,.08));}
 .main-card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--border2);}
-.card-icon{
-  width:48px;height:48px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;margin-bottom:1.25rem;
-}
+.main-card:hover::before{opacity:1;}
+.card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:1.25rem;}
 .card-routine .card-icon{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(37,99,235,.1));border:1px solid rgba(124,58,237,.2);}
 .card-library .card-icon{background:linear-gradient(135deg,rgba(219,39,119,.15),rgba(124,58,237,.1));border:1px solid rgba(219,39,119,.2);}
 .card-title{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px;}
 .card-desc{font-size:13px;color:var(--text2);line-height:1.65;}
-.card-arrow{
-  position:absolute;bottom:1.5rem;right:1.5rem;
-  font-size:18px;color:var(--text3);transition:all .2s;
-}
+.card-arrow{position:absolute;bottom:1.5rem;right:1.5rem;font-size:18px;color:var(--text3);transition:all .2s;}
 .main-card:hover .card-arrow{color:var(--purple);transform:translate(2px,-2px);}
-
 .main-badges{display:flex;gap:8px;flex-wrap:wrap;}
-.badge{
-  font-family:var(--mono);font-size:11px;
-  padding:5px 14px;border-radius:20px;
-  background:var(--bg3);border:1px solid var(--border);color:var(--text3);
-}
+.badge{font-family:var(--mono);font-size:11px;padding:5px 14px;border-radius:20px;background:var(--bg3);border:1px solid var(--border);color:var(--text3);}
 
-/* ══ PAGE 1: SURVEY ══ */
 .survey-form{padding:2rem 1.5rem;max-width:580px;margin:0 auto;}
 .q-wrap{margin-bottom:2.25rem;}
 .q-label{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
-.q-num{
-  font-family:var(--mono);font-size:10px;
-  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(37,99,235,.12));
-  border:1px solid rgba(124,58,237,.25);
-  color:var(--purple);border-radius:4px;padding:2px 8px;
-}
+.q-num{font-family:var(--mono);font-size:10px;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(37,99,235,.12));border:1px solid rgba(124,58,237,.25);color:var(--purple);border-radius:4px;padding:2px 8px;}
 .q-text{font-size:16px;font-weight:700;letter-spacing:-.3px;}
 .q-hint{font-size:12px;color:var(--text3);margin-top:-10px;margin-bottom:14px;font-family:var(--mono);}
-
+.gender-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.gender-btn{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .15s;text-align:center;box-shadow:var(--shadow);}
+.gender-btn:hover{border-color:var(--border2);}
+.gender-btn.selected{background:var(--bg3);border-color:var(--purple);}
+.gender-btn .p-icon{font-size:20px;margin-bottom:6px;}
+.gender-btn .p-name{font-size:14px;font-weight:700;}
+.gender-btn.selected .p-name{color:var(--purple);}
+.body-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px;}
+.body-input-wrap{display:flex;flex-direction:column;gap:6px;}
+.body-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.1em;}
+.body-input{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:10px 12px;font-size:14px;font-family:var(--mono);color:var(--text);outline:none;transition:border-color .15s;width:100%;}
+.body-input:focus{border-color:var(--purple);}
+.body-input::placeholder{color:var(--text3);}
+.body-input:disabled{opacity:.35;}
+.bf-unknown-btn{background:transparent;border:1px solid var(--border2);color:var(--text2);border-radius:7px;padding:6px 12px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;margin-top:8px;}
+.bf-unknown-btn.active{background:var(--bg3);border-color:var(--purple);color:var(--purple);}
+.bf-recommend{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:13px;font-family:var(--mono);display:flex;align-items:center;gap:8px;}
+.bf-recommend.bulk{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);color:var(--blue);}
+.bf-recommend.muscle{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);color:var(--purple);}
+.bf-recommend.cut{background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.2);color:var(--amber);}
+.bf-recommend.diet{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--red);}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.level-btn{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .15s;text-align:center;box-shadow:var(--shadow);}
+.level-btn:hover{border-color:var(--border2);}
+.level-btn.selected{background:var(--bg3);border-color:var(--blue);}
+.level-btn .p-icon{font-size:22px;margin-bottom:8px;}
+.level-btn .p-name{font-size:14px;font-weight:700;}
+.level-btn .p-desc{font-size:11px;color:var(--text2);margin-top:3px;}
+.level-btn.selected .p-name{color:var(--blue);}
 .day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-.day-btn{
-  aspect-ratio:1;background:var(--bg2);border:1px solid var(--border);
-  border-radius:12px;font-family:var(--mono);font-size:13px;font-weight:500;
-  color:var(--text2);cursor:pointer;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:3px;transition:all .15s;
-  position:relative;box-shadow:var(--shadow);
-}
+.day-btn{aspect-ratio:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:all .15s;position:relative;box-shadow:var(--shadow);}
 .day-btn:hover{border-color:var(--border2);color:var(--text);}
-.day-btn.selected{background:var(--purple);border-color:var(--purple);color:#fff;box-shadow:0 4px 12px rgba(124,58,237,.3);}
+.day-btn.selected{background:var(--purple);border-color:var(--purple);color:#fff;}
 .rec-dot{width:4px;height:4px;border-radius:50%;background:var(--purple);position:absolute;bottom:6px;}
 .day-btn.selected .rec-dot{background:rgba(255,255,255,.5);}
-
 .purpose-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.purpose-btn{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:14px;padding:18px;cursor:pointer;
-  transition:all .15s;text-align:left;box-shadow:var(--shadow);
-}
-.purpose-btn:hover{border-color:var(--border2);box-shadow:var(--shadow2);}
-.purpose-btn.selected{background:var(--bg3);border-color:var(--purple);box-shadow:0 4px 16px rgba(124,58,237,.15);}
+.purpose-btn{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;cursor:pointer;transition:all .15s;text-align:left;box-shadow:var(--shadow);}
+.purpose-btn:hover{border-color:var(--border2);}
+.purpose-btn.selected{background:var(--bg3);border-color:var(--purple);}
 .p-icon{font-size:22px;margin-bottom:10px;}
 .p-name{font-size:14px;font-weight:700;letter-spacing:-.2px;}
 .p-desc{font-size:11px;color:var(--text2);margin-top:3px;}
 .purpose-btn.selected .p-name{color:var(--purple);}
-
 .muscle-section{margin-bottom:14px;}
 .muscle-section-title{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px;font-family:var(--mono);}
 .sub-muscle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
-.sub-muscle-btn{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:10px;padding:11px 8px;cursor:pointer;
-  transition:all .15s;text-align:center;box-shadow:var(--shadow);
-}
+.sub-muscle-btn{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 8px;cursor:pointer;transition:all .15s;text-align:center;box-shadow:var(--shadow);}
 .sub-muscle-btn:hover{border-color:var(--border2);}
-.sub-muscle-btn.selected{background:var(--bg3);border-color:var(--pink);box-shadow:0 4px 12px rgba(219,39,119,.12);}
+.sub-muscle-btn.selected{background:var(--bg3);border-color:var(--pink);}
 .sm-name{font-size:12px;font-weight:500;color:var(--text2);}
 .sub-muscle-btn.selected .sm-name{color:var(--pink);}
-
-.gen-btn{
-  width:100%;margin-top:.5rem;padding:15px;
-  background:var(--grad2);color:#fff;border:none;border-radius:12px;
-  font-family:var(--font);font-size:15px;font-weight:700;
-  cursor:pointer;transition:all .15s;
-  box-shadow:0 4px 16px rgba(124,58,237,.3);
-}
+.gen-btn{width:100%;margin-top:.5rem;padding:15px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;box-shadow:0 4px 16px rgba(124,58,237,.3);}
 .gen-btn:hover{opacity:.9;transform:translateY(-1px);}
 .gen-btn:disabled{background:var(--bg3);color:var(--text3);cursor:not-allowed;transform:none;box-shadow:none;}
 
-/* ══ PAGE 2: ROUTINE ══ */
-.day-tab-bar{
-  display:flex;overflow-x:auto;background:var(--bg2);
-  border-bottom:1px solid var(--border);padding:0 1.25rem;scrollbar-width:none;
-}
+.day-tab-bar{display:flex;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1.25rem;scrollbar-width:none;}
 .day-tab-bar::-webkit-scrollbar{display:none;}
-.day-tab{
-  flex-shrink:0;padding:12px 16px;font-size:12px;font-weight:600;
-  color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;
-  transition:all .15s;white-space:nowrap;
-}
+.day-tab{flex-shrink:0;padding:12px 16px;font-size:12px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;}
 .day-tab:hover{color:var(--text2);}
 .day-tab.active{color:var(--purple);border-bottom-color:var(--purple);}
 .routine-content{padding:1.5rem;max-width:680px;margin:0 auto;}
@@ -221,12 +128,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .day-hero-title{font-size:24px;font-weight:800;letter-spacing:-.5px;}
 .day-hero-sub{font-size:13px;color:var(--text2);margin-top:5px;}
 .ex-list{display:flex;flex-direction:column;gap:10px;}
-.ex-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:14px;padding:16px 18px;cursor:pointer;
-  transition:all .15s;display:flex;align-items:center;
-  justify-content:space-between;gap:12px;box-shadow:var(--shadow);
-}
+.ex-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow);}
 .ex-card:hover{border-color:var(--border2);box-shadow:var(--shadow2);transform:translateY(-1px);}
 .ex-info{flex:1;}
 .ex-name{font-size:14px;font-weight:700;margin-bottom:8px;letter-spacing:-.2px;}
@@ -235,15 +137,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .tag.purple{background:rgba(124,58,237,.08);color:var(--purple);border-color:rgba(124,58,237,.2);}
 .tag.blue{background:rgba(37,99,235,.08);color:var(--blue);border-color:rgba(37,99,235,.2);}
 .ex-chevron{color:var(--text3);font-size:18px;flex-shrink:0;}
-.rest-view{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:16px;padding:3rem;text-align:center;box-shadow:var(--shadow);
-}
+.rest-view{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;box-shadow:var(--shadow);}
 .rest-emoji{font-size:44px;margin-bottom:14px;}
 .rest-title{font-size:20px;font-weight:700;color:var(--text2);}
 .rest-sub{font-size:13px;color:var(--text3);margin-top:8px;line-height:1.65;}
 
-/* ══ PAGE 3: DETAIL ══ */
 .detail-content{padding:1.5rem;max-width:600px;margin:0 auto;}
 .det-name{font-size:28px;font-weight:800;letter-spacing:-.7px;margin-bottom:8px;}
 .det-sub{display:flex;align-items:center;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
@@ -257,31 +155,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .stat-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.12em;margin-bottom:8px;}
 .stat-num{font-size:24px;font-weight:800;letter-spacing:-.5px;}
 .stat-unit{font-size:13px;color:var(--text2);font-weight:400;margin-left:4px;}
-.alt-msg{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:12px;padding:14px 16px;
-  display:flex;align-items:center;gap:10px;
-  font-size:13px;color:var(--text2);box-shadow:var(--shadow);
-}
+.det-note{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow);}
+.det-note-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.12em;margin-bottom:8px;}
+.yt-btn{display:flex;align-items:center;gap:8px;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:10px;padding:12px 16px;cursor:pointer;transition:all .15s;text-decoration:none;color:var(--red);font-size:13px;font-weight:600;margin-top:8px;}
+.yt-btn:hover{background:rgba(220,38,38,.14);}
 
-/* ══ PAGE 4: LIBRARY ══ */
 .library-content{padding:1.5rem;max-width:700px;margin:0 auto;}
 .lib-intro{margin-bottom:2rem;}
 .lib-title{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;}
 .lib-sub{font-size:13px;color:var(--text2);}
+.lib-notice{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:12px;color:var(--text2);font-family:var(--mono);background:var(--bg3);border:1px solid var(--border);}
 .accordion-list{display:flex;flex-direction:column;gap:10px;}
-
-.acc-main{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;transition:all .15s;
-  box-shadow:var(--shadow);
-}
+.acc-main{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .15s;box-shadow:var(--shadow);}
 .acc-main:hover{border-color:var(--border2);}
 .acc-main.open{border-color:var(--border2);box-shadow:var(--shadow2);}
-.acc-main-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 18px;cursor:pointer;transition:background .15s;gap:12px;
-}
+.acc-main-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;cursor:pointer;transition:background .15s;gap:12px;}
 .acc-main-header:hover{background:var(--bg3);}
 .acc-main-left{display:flex;align-items:center;gap:14px;}
 .acc-main-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
@@ -291,12 +179,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .acc-main.open .acc-arrow{transform:rotate(180deg);}
 .acc-main-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
 .acc-main.open .acc-main-body{max-height:3000px;}
-
 .acc-sub{border-top:1px solid var(--border);}
-.acc-sub-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px 12px 30px;cursor:pointer;transition:background .15s;gap:8px;
-}
+.acc-sub-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 12px 30px;cursor:pointer;transition:background .15s;gap:8px;}
 .acc-sub-header:hover{background:var(--bg3);}
 .acc-sub-name{font-size:12px;font-weight:700;color:var(--text2);}
 .acc-sub-count{font-family:var(--mono);font-size:10px;color:var(--text3);}
@@ -304,360 +188,611 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .acc-sub.open .acc-sub-arrow{transform:rotate(180deg);}
 .acc-sub-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-sub.open .acc-sub-body{max-height:2000px;}
-
-.lib-ex-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px 12px 38px;border-top:1px solid var(--border);gap:12px;
-  transition:background .15s;
-}
+.lib-ex-item{display:flex;align-items:center;padding:12px 18px 12px 38px;border-top:1px solid var(--border);gap:12px;transition:background .15s;}
 .lib-ex-item:hover{background:var(--bg3);}
 .lib-ex-left{flex:1;}
 .lib-ex-name{font-size:13px;font-weight:600;margin-bottom:7px;letter-spacing:-.1px;}
 .lib-ex-tags{display:flex;gap:5px;flex-wrap:wrap;}
-.equip-tag{
-  font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:5px;
-  background:var(--bg3);color:var(--text2);border:1px solid var(--border);
-  cursor:pointer;transition:all .15s;
-}
+.equip-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:5px;background:var(--bg3);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:4px;}
 .equip-tag:hover{border-color:var(--purple);color:var(--purple);}
 
-/* loading */
 .loading{display:none;position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
 [data-theme="dark"] .loading{background:rgba(8,8,16,.93);}
 .loading.on{display:flex;}
 .spinner{width:28px;height:28px;border:2px solid var(--bg4);border-top-color:var(--purple);border-radius:50%;animation:spin .75s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .ld-txt{font-family:var(--mono);font-size:12px;color:var(--text2);}
-
-@media(max-width:480px){
-  .main-title{font-size:36px;}
-  .main-cards{grid-template-columns:1fr;}
-  .purpose-grid{grid-template-columns:1fr 1fr;}
-  .sub-muscle-grid{grid-template-columns:repeat(2,1fr);}
-}
+@media(max-width:480px){.main-title{font-size:36px;}.main-brand{font-size:28px;}.main-cards{grid-template-columns:1fr;}.purpose-grid{grid-template-columns:1fr 1fr;}.sub-muscle-grid{grid-template-columns:repeat(2,1fr);}.body-inputs{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
+<div class="loading" id="loading"><div class="spinner"></div><div class="ld-txt">루틴 생성 중...</div></div>
 
-<div class="loading" id="loading">
-  <div class="spinner"></div>
-  <div class="ld-txt">루틴 생성 중...</div>
-</div>
-
-<!-- ══ PAGE 0: MAIN ══ -->
+<!-- MAIN -->
 <div class="page active" id="page-main">
   <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
   <div class="topbar">
-    <div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
-      <span class="toggle-icon">🌙</span>
-      <span id="theme-label">다크 모드</span>
-    </button>
+    <div class="tb-left"><div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div></div>
+    <div class="tb-center"><button class="nav-btn" onclick="nav('survey')">루틴 생성기</button><button class="nav-btn" onclick="nav('library')">운동 라이브러리</button></div>
+    <div class="tb-right"><button class="theme-toggle" onclick="toggleTheme()"><span class="toggle-icon">🌙</span><span class="theme-label">다크 모드</span></button></div>
   </div>
   <div class="main-inner">
-    <div class="main-eyebrow"><span class="eyebrow-dot"></span>PHYSIQUELAB — 운동 루틴 메이커</div>
-    <div class="main-title">내 몸에 맞는<br><span class="grad-text">루틴을 만들자.</span></div>
+    <div class="main-eyebrow"><span class="eyebrow-dot"></span>PHYSIQUELAB</div>
+    <div class="main-brand grad-text">PhysiqueLab</div>
+    <div class="main-title">나만의<br><span class="grad-text">맞춤형 운동 코치.</span></div>
     <p class="main-desc">꼭 필요한 운동만, 컴팩트하게.<br>목적과 조건을 입력하면 일주일 루틴을 자동으로 생성해드려요.</p>
     <div class="main-cards">
-      <div class="main-card card-routine" onclick="nav('survey')">
-        <div class="card-icon">🏋️</div>
-        <div class="card-title">루틴 생성기</div>
-        <div class="card-desc">조건을 입력하면 맞춤 일주일 루틴을 자동으로 만들어드려요</div>
-        <div class="card-arrow">↗</div>
-      </div>
-      <div class="main-card card-library" onclick="nav('library')">
-        <div class="card-icon">📚</div>
-        <div class="card-title">운동 라이브러리</div>
-        <div class="card-desc">부위별 핵심 운동 목록과 난이도를 확인해요</div>
-        <div class="card-arrow">↗</div>
-      </div>
+      <div class="main-card card-routine" onclick="nav('survey')"><div class="card-icon">🏋️</div><div class="card-title">루틴 생성기</div><div class="card-desc">조건을 입력하면 맞춤 일주일 루틴을 자동으로 만들어드려요</div><div class="card-arrow">↗</div></div>
+      <div class="main-card card-library" onclick="nav('library')"><div class="card-icon">📚</div><div class="card-title">운동 라이브러리</div><div class="card-desc">부위별 핵심 운동 목록과 난이도를 확인해요</div><div class="card-arrow">↗</div></div>
     </div>
-    <div class="main-badges">
-      <span class="badge">헬스장 기준</span>
-      <span class="badge">주 1~7일</span>
-      <span class="badge">증량 / 감량 / 체력향상 / 유지</span>
-      <span class="badge">핵심 운동만</span>
-    </div>
+    <div class="main-badges"><span class="badge">헬스장 기준</span><span class="badge">주 1~7일</span><span class="badge">근육량 증가 / 벌크업 / 컷팅 / 다이어트</span><span class="badge">핵심 운동만</span></div>
   </div>
 </div>
 
-<!-- ══ PAGE 1: SURVEY ══ -->
+<!-- SURVEY -->
 <div class="page" id="page-survey">
   <div class="topbar">
-    <div class="tb-left">
-      <button class="back-btn" onclick="nav('main')">← 홈</button>
-      <div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn2">
-      <span class="toggle-icon">🌙</span>
-      <span id="theme-label2">다크 모드</span>
-    </button>
+    <div class="tb-left"><div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div></div>
+    <div class="tb-center"><button class="nav-btn active" onclick="nav('survey')">루틴 생성기</button><button class="nav-btn" onclick="nav('library')">운동 라이브러리</button></div>
+    <div class="tb-right"><button class="theme-toggle" onclick="toggleTheme()"><span class="toggle-icon">🌙</span><span class="theme-label">다크 모드</span></button></div>
   </div>
   <div class="survey-form">
     <div class="q-wrap">
-      <div class="q-label"><span class="q-num">01</span><span class="q-text">주 몇 회 운동할 건가요?</span></div>
+      <div class="q-label"><span class="q-num">01</span><span class="q-text">기본 정보를 입력해주세요</span></div>
+      <div class="gender-grid">
+        <div class="gender-btn" onclick="selectGender(this,'male')"><div class="p-icon">👨</div><div class="p-name">남성</div></div>
+        <div class="gender-btn" onclick="selectGender(this,'female')"><div class="p-icon">👩</div><div class="p-name">여성</div></div>
+      </div>
+      <div class="body-inputs">
+        <div class="body-input-wrap"><label class="body-label">키 (cm)</label><input type="number" class="body-input" id="input-height" placeholder="170"/></div>
+        <div class="body-input-wrap"><label class="body-label">몸무게 (kg)</label><input type="number" class="body-input" id="input-weight" placeholder="70"/></div>
+        <div class="body-input-wrap"><label class="body-label">체지방률 (%)</label><input type="number" class="body-input" id="input-bf" placeholder="20"/></div>
+      </div>
+      <button class="bf-unknown-btn" id="bf-unknown-btn" onclick="toggleBfUnknown()"><span id="bf-unknown-icon">☐</span> 체지방률을 잘 모르겠어요</button>
+      <div class="bf-recommend" id="bf-recommend" style="display:none"></div>
+    </div>
+    <div class="q-wrap">
+      <div class="q-label"><span class="q-num">02</span><span class="q-text">운동 경력이 어떻게 되나요?</span></div>
+      <div class="level-grid">
+        <div class="level-btn" onclick="selectLevel(this,'beginner')"><div class="p-icon">🌱</div><div class="p-name">초보</div><div class="p-desc">운동 경력 1년 미만</div></div>
+        <div class="level-btn" onclick="selectLevel(this,'intermediate')"><div class="p-icon">⚡</div><div class="p-name">중급</div><div class="p-desc">운동 경력 1~3년</div></div>
+        <div class="level-btn" onclick="selectLevel(this,'advanced')"><div class="p-icon">🔥</div><div class="p-name">상급</div><div class="p-desc">운동 경력 3년 이상</div></div>
+      </div>
+    </div>
+    <div class="q-wrap">
+      <div class="q-label"><span class="q-num">03</span><span class="q-text">주 몇 회 운동할 건가요?</span></div>
       <div class="q-hint">추천 범위는 주 2~6일이에요</div>
       <div class="day-grid" id="day-grid"></div>
     </div>
     <div class="q-wrap">
-      <div class="q-label"><span class="q-num">02</span><span class="q-text">운동 목적이 뭔가요?</span></div>
+      <div class="q-label"><span class="q-num">04</span><span class="q-text">운동 목적이 뭔가요?</span></div>
       <div class="purpose-grid">
-        <div class="purpose-btn" onclick="selectPurpose(this,'bulk')"><div class="p-icon">💪</div><div class="p-name">증량</div><div class="p-desc">근육량 늘리기</div></div>
-        <div class="purpose-btn" onclick="selectPurpose(this,'cut')"><div class="p-icon">🔥</div><div class="p-name">감량</div><div class="p-desc">체지방 줄이기</div></div>
-        <div class="purpose-btn" onclick="selectPurpose(this,'strength')"><div class="p-icon">🏋️</div><div class="p-name">체력 향상</div><div class="p-desc">근력과 체력 키우기</div></div>
-        <div class="purpose-btn" onclick="selectPurpose(this,'maintain')"><div class="p-icon">⚖️</div><div class="p-name">유지</div><div class="p-desc">현재 몸 유지하기</div></div>
+        <div class="purpose-btn" onclick="selectPurpose(this,'muscle')"><div class="p-icon">💪</div><div class="p-name">근육량 증가</div><div class="p-desc">체지방은 최대한 유지하며 근육량 증가</div></div>
+        <div class="purpose-btn" onclick="selectPurpose(this,'bulk')"><div class="p-icon">🐂</div><div class="p-name">벌크업</div><div class="p-desc">체지방이 조금 늘더라도 근육을 최대한 증가</div></div>
+        <div class="purpose-btn" onclick="selectPurpose(this,'cut')"><div class="p-icon">✂️</div><div class="p-name">컷팅</div><div class="p-desc">근육은 최대한 유지하며 체지방 감소</div></div>
+        <div class="purpose-btn" onclick="selectPurpose(this,'diet')"><div class="p-icon">🔥</div><div class="p-name">다이어트</div><div class="p-desc">약간의 근손실을 감수하더라도 체지방 크게 감소</div></div>
       </div>
     </div>
     <div class="q-wrap">
-      <div class="q-label"><span class="q-num">03</span><span class="q-text">집중하고 싶은 부위가 있나요?</span></div>
-      <div class="q-hint">복수 선택 가능 · 선택한 부위에 더 많은 볼륨이 배정돼요</div>
+      <div class="q-label"><span class="q-num">05</span><span class="q-text">집중하고 싶은 부위가 있나요?</span></div>
+      <div class="q-hint">복수 선택 가능 · 선택한 부위에 볼륨이 추가 배정돼요</div>
       <div id="survey-muscle-wrap"></div>
     </div>
     <button class="gen-btn" id="gen-btn" onclick="generateRoutine()" disabled>루틴 생성하기</button>
   </div>
 </div>
 
-<!-- ══ PAGE 2: ROUTINE ══ -->
+<!-- ROUTINE -->
 <div class="page" id="page-routine">
   <div class="topbar">
-    <div class="tb-left">
-      <button class="back-btn" onclick="nav('survey')">← 다시 설정</button>
-      <div><div class="tb-title">내 루틴</div><div class="tb-meta" id="tb-meta">—</div></div>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn3">
-      <span class="toggle-icon">🌙</span>
-      <span id="theme-label3">다크 모드</span>
-    </button>
+    <div class="tb-left"><div><div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div><div class="tb-meta" id="tb-meta"></div></div></div>
+    <div class="tb-center"><button class="nav-btn active" onclick="nav('survey')">루틴 생성기</button><button class="nav-btn" onclick="nav('library')">운동 라이브러리</button></div>
+    <div class="tb-right"><button class="theme-toggle" onclick="toggleTheme()"><span class="toggle-icon">🌙</span><span class="theme-label">다크 모드</span></button></div>
   </div>
   <div class="day-tab-bar" id="day-tab-bar"></div>
   <div class="routine-content" id="routine-content"></div>
 </div>
 
-<!-- ══ PAGE 3: DETAIL ══ -->
+<!-- DETAIL -->
 <div class="page" id="page-detail">
   <div class="topbar">
-    <div class="tb-left">
-      <button class="back-btn" id="det-back-btn">← 뒤로</button>
-      <div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn4">
-      <span class="toggle-icon">🌙</span>
-      <span id="theme-label4">다크 모드</span>
-    </button>
+    <div class="tb-left"><button class="back-btn" id="det-back-btn">← 뒤로</button></div>
+    <div class="tb-center"><div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div></div>
+    <div class="tb-right"><button class="theme-toggle" onclick="toggleTheme()"><span class="toggle-icon">🌙</span><span class="theme-label">다크 모드</span></button></div>
   </div>
   <div class="detail-content">
     <div class="det-name" id="det-name">—</div>
-    <div class="det-sub">
-      <span class="det-muscle-tag" id="det-muscle">—</span>
-      <span class="difficulty-tag" id="det-diff">—</span>
-    </div>
+    <div class="det-sub"><span class="det-muscle-tag" id="det-muscle">—</span><span class="difficulty-tag" id="det-diff">—</span></div>
     <div class="stat-grid" id="det-stats"></div>
-    <div class="alt-msg">
-      <span>💡</span>
-      장비가 없다면 같은 운동의 다른 장비 옵션으로 대체할 수 있어요.
-    </div>
+    <div class="det-note" id="det-note"></div>
+    <a class="yt-btn" id="yt-link" href="#" target="_blank">▶ 유튜브에서 자세 검색</a>
   </div>
 </div>
 
-<!-- ══ PAGE 4: LIBRARY ══ -->
+<!-- LIBRARY -->
 <div class="page" id="page-library">
   <div class="topbar">
-    <div class="tb-left">
-      <button class="back-btn" onclick="nav('main')">← 홈</button>
-      <div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn5">
-      <span class="toggle-icon">🌙</span>
-      <span id="theme-label5">다크 모드</span>
-    </button>
+    <div class="tb-left"><div class="tb-logo" onclick="nav('main')"><span>PhysiqueLab</span></div></div>
+    <div class="tb-center"><button class="nav-btn" onclick="nav('survey')">루틴 생성기</button><button class="nav-btn active" onclick="nav('library')">운동 라이브러리</button></div>
+    <div class="tb-right"><button class="theme-toggle" onclick="toggleTheme()"><span class="toggle-icon">🌙</span><span class="theme-label">다크 모드</span></button></div>
   </div>
   <div class="library-content">
     <div class="lib-intro">
       <div class="lib-title">운동 <span class="grad-text">라이브러리</span></div>
       <div class="lib-sub">부위를 클릭하면 운동 목록이 펼쳐져요 · 장비 태그를 클릭하면 상세 정보를 볼 수 있어요</div>
+      <div class="lib-notice">💡 해당 장비가 없으면 동일한 운동을 다른 장비를 이용해 운동해주세요.</div>
+      <div class="lib-notice" style="margin-top:6px">🔥 효과적인 근성장을 위해 각 운동의 마지막 세트는 반복 수를 다 채우더라도 실패지점까지 계속 진행해주세요.</div>
     </div>
     <div class="accordion-list" id="accordion-list"></div>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-// THEME TOGGLE
-// ══════════════════════════════════════════════
+// ── THEME ──────────────────────────────────────────────────
 function toggleTheme(){
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  const icon = isDark ? '🌙' : '☀️';
-  const label = isDark ? '다크 모드' : '라이트 모드';
-  for(let i=1;i<=5;i++){
-    const iconEl = document.querySelector(`#theme-btn${i===1?'':i} .toggle-icon`);
-    const labelEl = document.getElementById(`theme-label${i===1?'':i}`);
-    if(iconEl) iconEl.textContent = icon;
-    if(labelEl) labelEl.textContent = label;
-  }
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  const icon=isDark?'🌙':'☀️', label=isDark?'다크 모드':'라이트 모드';
+  document.querySelectorAll('.toggle-icon').forEach(el=>el.textContent=icon);
+  document.querySelectorAll('.theme-label').forEach(el=>el.textContent=label);
 }
 
-// ══════════════════════════════════════════════
-// DATABASE
-// ══════════════════════════════════════════════
-const DB = {
-  chest:{
-    icon:'🫁',label:'가슴',
-    color:'rgba(37,99,235,.15)',borderColor:'rgba(37,99,235,.3)',
+// ── DATABASE ────────────────────────────────────────────────
+const DB={
+  chest:{icon:'🫁',label:'가슴',color:'rgba(37,99,235,.15)',borderColor:'rgba(37,99,235,.3)',
     subs:{
       upper:{label:'상부 가슴',exercises:[
-        {name:'인클라인 벤치프레스',muscle:'상부 가슴',difficulty:'normal',equipment:['바벨','덤벨','스미스머신','머신']},
-        {name:'인클라인 체스트 프레스',muscle:'상부 가슴',difficulty:'easy',equipment:['머신']},
-        {name:'인클라인 플라이',muscle:'상부 가슴',difficulty:'normal',equipment:['덤벨','케이블','머신']},
+        {name:'인클라인 벤치프레스',muscle:'상부 가슴',rank:1,equipment:[{name:'바벨',difficulty:'hard'},{name:'덤벨',difficulty:'hard'},{name:'스미스머신',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'인클라인 체스트 프레스',muscle:'상부 가슴',rank:2,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'인클라인 플라이',muscle:'상부 가슴',rank:3,equipment:[{name:'덤벨',difficulty:'hard'},{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
       ]},
       mid:{label:'전체/중부 가슴',exercises:[
-        {name:'벤치프레스',muscle:'가슴 전체',difficulty:'normal',equipment:['바벨','덤벨','머신','스미스머신']},
-        {name:'푸쉬업',muscle:'가슴 전체',difficulty:'easy',equipment:['맨몸']},
-        {name:'체스트 플라이',muscle:'가슴 전체',difficulty:'easy',equipment:['케이블','머신','덤벨']},
-        {name:'체스트 프레스',muscle:'가슴 전체',difficulty:'easy',equipment:['머신']},
+        {name:'체스트 플라이',muscle:'가슴 전체',rank:1,equipment:[{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'},{name:'덤벨',difficulty:'hard'}]},
+        {name:'체스트 프레스',muscle:'가슴 전체',rank:2,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'벤치프레스',muscle:'가슴 전체',rank:3,equipment:[{name:'바벨',difficulty:'hard'},{name:'덤벨',difficulty:'hard'},{name:'머신',difficulty:'normal'},{name:'스미스머신',difficulty:'normal'}]},
+        {name:'푸쉬업',muscle:'가슴 전체',rank:4,equipment:[{name:'맨몸',difficulty:'normal'}]},
       ]},
       lower:{label:'하부 가슴',exercises:[
-        {name:'디클라인 벤치프레스',muscle:'하부 가슴',difficulty:'normal',equipment:['바벨','덤벨','스미스머신','머신']},
-        {name:'디클라인 체스트 프레스',muscle:'하부 가슴',difficulty:'easy',equipment:['머신']},
-        {name:'디클라인 플라이',muscle:'하부 가슴',difficulty:'normal',equipment:['덤벨','케이블','머신']},
-        {name:'딥스',muscle:'하부 가슴 / 삼두',difficulty:'hard',equipment:['맨몸','어시스트']},
+        {name:'디클라인 플라이',muscle:'하부 가슴',rank:1,equipment:[{name:'덤벨',difficulty:'hard'},{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'디클라인 체스트 프레스',muscle:'하부 가슴',rank:2,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'디클라인 벤치프레스',muscle:'하부 가슴',rank:3,equipment:[{name:'바벨',difficulty:'hard'},{name:'덤벨',difficulty:'hard'},{name:'스미스머신',difficulty:'hard'},{name:'머신',difficulty:'normal'}]},
+        {name:'딥스',muscle:'하부 가슴 / 삼두',rank:4,equipment:[{name:'맨몸',difficulty:'hard'},{name:'머신(어시스트)',difficulty:'normal'}]},
       ]}
     }
   },
-  back:{
-    icon:'🔙',label:'등',
-    color:'rgba(124,58,237,.15)',borderColor:'rgba(124,58,237,.3)',
+  back:{icon:'🔙',label:'등',color:'rgba(124,58,237,.15)',borderColor:'rgba(124,58,237,.3)',
     subs:{
-      trapezius:{label:'승모근',exercises:[
-        {name:'티바로우',muscle:'승모근 / 등 상부',difficulty:'hard',equipment:['머신']},
-        {name:'체스트 서포트 티바로우',muscle:'승모근 / 등 상부',difficulty:'normal',equipment:['머신']},
-      ]},
       lats:{label:'광배근',exercises:[
-        {name:'풀업',muscle:'광배근 / 이두',difficulty:'hard',equipment:['맨몸','머신']},
-        {name:'시티드 로우',muscle:'광배근 / 등 중부',difficulty:'normal',equipment:['머신']},
-        {name:'하이 로우',muscle:'광배근',difficulty:'normal',equipment:['머신']},
-        {name:'로우 로우',muscle:'광배근 / 등 하부',difficulty:'normal',equipment:['머신']},
-        {name:'랫풀다운',muscle:'광배근',difficulty:'easy',equipment:['케이블','머신']},
-        {name:'벤트오버 로우',muscle:'광배근 / 등 중부',difficulty:'hard',equipment:['덤벨','머신']},
-        {name:'버티컬 풀다운',muscle:'광배근',difficulty:'easy',equipment:['머신']},
-        {name:'암 풀다운',muscle:'광배근',difficulty:'easy',equipment:['케이블']},
+        {name:'랫풀다운',muscle:'광배근',rank:1,equipment:[{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'풀업',muscle:'광배근 / 이두',rank:1,equipment:[{name:'맨몸',difficulty:'hard'},{name:'머신',difficulty:'easy'}]},
+        {name:'시티드 로우',muscle:'광배근 / 등 중부',rank:2,equipment:[{name:'머신',difficulty:'easy'},{name:'케이블',difficulty:'normal'}]},
+        {name:'하이 로우',muscle:'광배근',rank:3,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'로우 로우',muscle:'광배근 / 등 하부',rank:4,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'벤트오버 로우',muscle:'광배근 / 등 중부',rank:99,equipment:[{name:'덤벨',difficulty:'hard'},{name:'머신',difficulty:'normal'}]},
+        {name:'버티컬 풀다운',muscle:'광배근',rank:99,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'암 풀다운',muscle:'광배근',rank:99,equipment:[{name:'케이블',difficulty:'normal'}]},
+      ]},
+      trapezius:{label:'승모근',exercises:[
+        {name:'체스트 서포트 티바로우',muscle:'승모근 / 등 상부',rank:1,equipment:[{name:'머신',difficulty:'normal'}]},
+        {name:'티바로우',muscle:'승모근 / 등 상부',rank:2,equipment:[{name:'머신',difficulty:'hard'}]},
       ]},
       erector:{label:'척추기립근',exercises:[
-        {name:'백 익스텐션',muscle:'척추기립근',difficulty:'easy',equipment:['머신']},
+        {name:'백 익스텐션',muscle:'척추기립근',rank:1,equipment:[{name:'머신',difficulty:'normal'}]},
       ]}
     }
   },
-  legs:{
-    icon:'🦵',label:'하체',
-    color:'rgba(219,39,119,.15)',borderColor:'rgba(219,39,119,.3)',
+  legs:{icon:'🦵',label:'하체',color:'rgba(219,39,119,.15)',borderColor:'rgba(219,39,119,.3)',
     subs:{
       quad:{label:'대퇴사두',exercises:[
-        {name:'스쿼트',muscle:'대퇴사두 / 둔근',difficulty:'normal',equipment:['맨몸','바벨','스미스머신']},
-        {name:'핵 스쿼트',muscle:'대퇴사두 / 둔근',difficulty:'normal',equipment:['머신']},
-        {name:'레그 프레스',muscle:'대퇴사두 / 둔근',difficulty:'easy',equipment:['머신']},
-        {name:'펜듈럼 스쿼트',muscle:'대퇴사두 / 둔근',difficulty:'normal',equipment:['머신']},
-        {name:'레그 익스텐션',muscle:'대퇴사두',difficulty:'easy',equipment:['머신']},
-        {name:'불가리안 스플릿 스쿼트',muscle:'대퇴사두 / 둔근',difficulty:'hard',equipment:['덤벨','바벨']},
+        {name:'레그 프레스',muscle:'대퇴사두 / 둔근',rank:1,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'핵 스쿼트',muscle:'대퇴사두 / 둔근',rank:2,equipment:[{name:'머신',difficulty:'normal'}]},
+        {name:'스쿼트',muscle:'대퇴사두 / 둔근',rank:2,equipment:[{name:'바벨',difficulty:'hard'},{name:'스미스머신',difficulty:'hard'}]},
+        {name:'펜듈럼 스쿼트',muscle:'대퇴사두 / 둔근',rank:2,equipment:[{name:'머신',difficulty:'normal'}]},
+        {name:'레그 익스텐션',muscle:'대퇴사두',rank:3,equipment:[{name:'머신',difficulty:'easy'}]},
       ]},
       hamstring:{label:'햄스트링',exercises:[
-        {name:'스탠딩 레그 컬',muscle:'햄스트링',difficulty:'easy',equipment:['머신']},
-        {name:'라잉 레그 컬',muscle:'햄스트링',difficulty:'easy',equipment:['머신']},
-        {name:'시티드 레그 컬',muscle:'햄스트링',difficulty:'easy',equipment:['머신']},
-        {name:'데드리프트',muscle:'햄스트링 / 척추기립근',difficulty:'hard',equipment:['바벨']},
-        {name:'루마니안 데드리프트',muscle:'햄스트링 / 둔근',difficulty:'normal',equipment:['바벨']},
+        {name:'데드리프트',muscle:'햄스트링 / 척추기립근',rank:1,equipment:[{name:'바벨',difficulty:'hard'}]},
+        {name:'루마니안 데드리프트',muscle:'햄스트링 / 둔근',rank:1,equipment:[{name:'바벨',difficulty:'normal'}]},
+        {name:'스탠딩 레그 컬',muscle:'햄스트링',rank:2,equipment:[{name:'머신',difficulty:'normal'}]},
+        {name:'라잉 레그 컬',muscle:'햄스트링',rank:2,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'시티드 레그 컬',muscle:'햄스트링',rank:2,equipment:[{name:'머신',difficulty:'easy'}]},
       ]},
       glute:{label:'엉덩이',exercises:[
-        {name:'힙 어덕션',muscle:'내전근',difficulty:'easy',equipment:['머신']},
-        {name:'힙 어브덕션',muscle:'외전근',difficulty:'easy',equipment:['머신']},
-        {name:'힙 쓰러스트',muscle:'둔근',difficulty:'normal',equipment:['머신']},
+        {name:'힙 어브덕션',muscle:'외전근',rank:1,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'힙 쓰러스트',muscle:'둔근',rank:1,equipment:[{name:'머신',difficulty:'normal'}]},
+        {name:'힙 어덕션',muscle:'내전근',rank:99,equipment:[{name:'머신',difficulty:'easy'}]},
       ]},
       calf:{label:'종아리',exercises:[
-        {name:'카프 레이즈',muscle:'비복근 / 가자미근',difficulty:'easy',equipment:['맨몸','머신']},
+        {name:'카프 레이즈',muscle:'비복근 / 가자미근',rank:1,equipment:[{name:'맨몸',difficulty:'easy'},{name:'머신',difficulty:'easy'}]},
       ]}
     }
   },
-  shoulder:{
-    icon:'🏹',label:'어깨',
-    color:'rgba(217,119,6,.15)',borderColor:'rgba(217,119,6,.3)',
+  shoulder:{icon:'🏹',label:'어깨',color:'rgba(217,119,6,.15)',borderColor:'rgba(217,119,6,.3)',
     subs:{
       front:{label:'전면 삼각근',exercises:[
-        {name:'오버헤드 프레스',muscle:'전면 삼각근',difficulty:'hard',equipment:['바벨','스미스머신']},
-        {name:'숄더 프레스',muscle:'전면 삼각근',difficulty:'normal',equipment:['덤벨','머신']},
-        {name:'프론트 레이즈',muscle:'전면 삼각근',difficulty:'easy',equipment:['덤벨','바벨','케이블']},
+        {name:'숄더 프레스',muscle:'전면 삼각근',rank:1,equipment:[{name:'덤벨',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'오버헤드 프레스',muscle:'전면 삼각근',rank:2,equipment:[{name:'바벨',difficulty:'hard'},{name:'스미스머신',difficulty:'normal'}]},
+        {name:'프론트 레이즈',muscle:'전면 삼각근',rank:3,equipment:[{name:'덤벨',difficulty:'normal'},{name:'바벨',difficulty:'normal'},{name:'케이블',difficulty:'normal'}]},
       ]},
       side:{label:'측면 삼각근',exercises:[
-        {name:'레터럴 레이즈',muscle:'측면 삼각근',difficulty:'easy',equipment:['덤벨','케이블','머신']},
+        {name:'레터럴 레이즈',muscle:'측면 삼각근',rank:1,equipment:[{name:'덤벨',difficulty:'normal'},{name:'케이블',difficulty:'easy'},{name:'머신',difficulty:'easy'}]},
       ]},
       rear:{label:'후면 삼각근',exercises:[
-        {name:'펙 덱 리어 델트',muscle:'후면 삼각근',difficulty:'easy',equipment:['머신']},
-        {name:'페이스 풀',muscle:'후면 삼각근 / 상부 등',difficulty:'easy',equipment:['케이블']},
-        {name:'리버스 플라이',muscle:'후면 삼각근',difficulty:'easy',equipment:['케이블']},
+        {name:'펙 덱 리어 델트',muscle:'후면 삼각근',rank:1,equipment:[{name:'머신',difficulty:'easy'}]},
+        {name:'리버스 플라이',muscle:'후면 삼각근',rank:2,equipment:[{name:'케이블',difficulty:'normal'}]},
+        {name:'페이스 풀',muscle:'후면 삼각근 / 상부 등',rank:3,equipment:[{name:'케이블',difficulty:'normal'}]},
       ]}
     }
   },
-  arms:{
-    icon:'💪',label:'팔',
-    color:'rgba(5,150,105,.15)',borderColor:'rgba(5,150,105,.3)',
+  arms:{icon:'💪',label:'팔',color:'rgba(5,150,105,.15)',borderColor:'rgba(5,150,105,.3)',
     subs:{
       bicep:{label:'이두',exercises:[
-        {name:'바이셉 컬',muscle:'이두근',difficulty:'easy',equipment:['바벨','덤벨','케이블','머신']},
-        {name:'프리처 컬',muscle:'이두근',difficulty:'normal',equipment:['바벨','덤벨','머신']},
-        {name:'해머 컬',muscle:'이두근 / 상완근',difficulty:'easy',equipment:['덤벨','케이블']},
+        {name:'프리처 컬',muscle:'이두근',rank:1,equipment:[{name:'바벨',difficulty:'easy'},{name:'덤벨',difficulty:'easy'},{name:'머신',difficulty:'easy'}]},
+        {name:'바이셉 컬',muscle:'이두근',rank:2,equipment:[{name:'바벨',difficulty:'easy'},{name:'덤벨',difficulty:'easy'},{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'해머 컬',muscle:'이두근 / 상완근',rank:3,equipment:[{name:'덤벨',difficulty:'easy'},{name:'케이블',difficulty:'normal'}]},
       ]},
       tricep:{label:'삼두',exercises:[
-        {name:'오버헤드 익스텐션',muscle:'삼두근 장두',difficulty:'normal',equipment:['덤벨','바벨','케이블','머신']},
-        {name:'트라이셉 푸쉬다운',muscle:'삼두근',difficulty:'easy',equipment:['케이블','머신']},
+        {name:'오버헤드 익스텐션',muscle:'삼두근 장두',rank:1,equipment:[{name:'덤벨',difficulty:'easy'},{name:'바벨',difficulty:'normal'},{name:'케이블',difficulty:'easy'},{name:'머신',difficulty:'easy'}]},
+        {name:'트라이셉 푸쉬다운',muscle:'삼두근',rank:99,equipment:[{name:'케이블',difficulty:'easy'},{name:'머신',difficulty:'easy'}]},
       ]},
       forearm:{label:'전완근',exercises:[
-        {name:'리버스 컬',muscle:'전완근 / 이두근',difficulty:'easy',equipment:['바벨','덤벨','케이블']},
-        {name:'리스트 컬',muscle:'전완근',difficulty:'easy',equipment:['덤벨','바벨']},
+        {name:'리스트 컬',muscle:'전완근',rank:1,equipment:[{name:'덤벨',difficulty:'easy'},{name:'바벨',difficulty:'easy'}]},
+        {name:'리버스 컬',muscle:'전완근 / 이두근',rank:2,equipment:[{name:'바벨',difficulty:'normal'},{name:'덤벨',difficulty:'easy'},{name:'케이블',difficulty:'easy'}]},
       ]}
     }
   },
-  core:{
-    icon:'🎯',label:'복근',
-    color:'rgba(239,68,68,.15)',borderColor:'rgba(239,68,68,.3)',
+  core:{icon:'🎯',label:'복근',color:'rgba(239,68,68,.15)',borderColor:'rgba(239,68,68,.3)',
     subs:{
       all:{label:'복근',exercises:[
-        {name:'크런치',muscle:'복직근',difficulty:'easy',equipment:['맨몸','케이블','머신']},
-        {name:'레그 레이즈',muscle:'하부 복직근',difficulty:'normal',equipment:['맨몸']},
-        {name:'행잉 레그 레이즈',muscle:'하부 복직근',difficulty:'hard',equipment:['맨몸']},
+        {name:'크런치',muscle:'복직근',rank:1,equipment:[{name:'맨몸',difficulty:'easy'},{name:'케이블',difficulty:'normal'},{name:'머신',difficulty:'easy'}]},
+        {name:'레그 레이즈',muscle:'하부 복직근',rank:2,equipment:[{name:'맨몸',difficulty:'easy'}]},
+        {name:'행잉 레그 레이즈',muscle:'하부 복직근',rank:99,equipment:[{name:'맨몸',difficulty:'hard'}]},
       ]}
     }
   },
-  cardio:{
-    icon:'🏃',label:'유산소',
-    color:'rgba(6,182,212,.15)',borderColor:'rgba(6,182,212,.3)',
+  cardio:{icon:'🏃',label:'유산소',color:'rgba(6,182,212,.15)',borderColor:'rgba(6,182,212,.3)',
     subs:{
       all:{label:'유산소',exercises:[
-        {name:'러닝머신',muscle:'전신',difficulty:'easy',equipment:[]},
-        {name:'마이마운틴 (인클라인 트레드밀)',muscle:'하체 / 심폐',difficulty:'normal',equipment:[]},
-        {name:'천국의 계단 (스텝 밀)',muscle:'하체 / 심폐',difficulty:'hard',equipment:[]},
-        {name:'사이클',muscle:'하체 / 심폐',difficulty:'easy',equipment:[]},
+        {name:'러닝머신',muscle:'전신',rank:1,equipment:[]},
+        {name:'마이마운틴 (인클라인 트레드밀)',muscle:'하체 / 심폐',rank:2,equipment:[]},
+        {name:'천국의 계단 (스텝 밀)',muscle:'하체 / 심폐',rank:3,equipment:[]},
+        {name:'사이클',muscle:'하체 / 심폐',rank:4,equipment:[]},
       ]}
     }
   }
 };
 
-const ROUTINE_KEYS=['chest','back','legs','shoulder','arms','core'];
-const MUSCLE_KO={chest:'가슴',back:'등',legs:'하체',shoulder:'어깨',arms:'팔',core:'복근'};
-const DAY_KO=['월','화','수','목','금','토','일'];
+// ── 분할 스케줄 정의 ────────────────────────────────────────
+// 각 요일에 어떤 부위 조합으로 구성할지 정의
+// 형식: [{muscleKey, subKey, count, sets}]
+const SPLITS = {
+  1: [ // 전신
+    {muscleKey:'chest', subKey:'mid',   count:1, sets:3},
+    {muscleKey:'chest', subKey:'upper', count:1, sets:3},
+    {muscleKey:'back',  subKey:'lats',  count:1, sets:3},
+    {muscleKey:'legs',  subKey:'quad',  count:1, sets:3},
+    {muscleKey:'legs',  subKey:'hamstring', count:1, sets:3},
+    {muscleKey:'shoulder', subKey:'front', count:1, sets:3},
+    {muscleKey:'shoulder', subKey:'side',  count:1, sets:4},
+    {muscleKey:'arms',  subKey:'bicep', count:1, sets:4},
+    {muscleKey:'arms',  subKey:'tricep',count:1, sets:4},
+    {muscleKey:'core',  subKey:'all',   count:1, sets:3},
+  ],
+  2: [ // 전신 (2일차도 동일)
+    {muscleKey:'chest', subKey:'mid',   count:1, sets:3},
+    {muscleKey:'chest', subKey:'upper', count:1, sets:3},
+    {muscleKey:'back',  subKey:'lats',  count:1, sets:3},
+    {muscleKey:'legs',  subKey:'quad',  count:1, sets:3},
+    {muscleKey:'legs',  subKey:'hamstring', count:1, sets:3},
+    {muscleKey:'shoulder', subKey:'front', count:1, sets:3},
+    {muscleKey:'shoulder', subKey:'side',  count:1, sets:4},
+    {muscleKey:'arms',  subKey:'bicep', count:1, sets:4},
+    {muscleKey:'arms',  subKey:'tricep',count:1, sets:4},
+    {muscleKey:'core',  subKey:'all',   count:1, sets:3},
+  ],
+  3: [ // 3분할
+    // A: 가슴+삼두+어깨전면·측면
+    [{muscleKey:'chest', subKey:'mid',   count:2, sets:3},
+     {muscleKey:'chest', subKey:'upper', count:1, sets:3},
+     {muscleKey:'arms',  subKey:'tricep',count:1, sets:4},
+     {muscleKey:'shoulder', subKey:'front', count:1, sets:3},
+     {muscleKey:'shoulder', subKey:'side',  count:1, sets:4}],
+    // B: 등+이두+어깨후면
+    [{muscleKey:'back',  subKey:'lats',  count:3, sets:3},
+     {muscleKey:'arms',  subKey:'bicep', count:1, sets:4},
+     {muscleKey:'shoulder', subKey:'rear', count:1, sets:3}],
+    // C: 하체+전완+복근
+    [{muscleKey:'legs',  subKey:'quad',  count:2, sets:3},
+     {muscleKey:'legs',  subKey:'hamstring', count:1, sets:3},
+     {muscleKey:'legs',  subKey:'glute', count:1, sets:3},
+     {muscleKey:'arms',  subKey:'forearm', count:1, sets:2},
+     {muscleKey:'core',  subKey:'all',   count:1, sets:3}],
+  ],
+  4: [ // 4분할
+    // A: 가슴+삼두
+    [{muscleKey:'chest', subKey:'mid',   count:2, sets:3},
+     {muscleKey:'chest', subKey:'upper', count:1, sets:3},
+     {muscleKey:'arms',  subKey:'tricep',count:1, sets:4}],
+    // B: 등+이두
+    [{muscleKey:'back',  subKey:'lats',  count:3, sets:3},
+     {muscleKey:'arms',  subKey:'bicep', count:1, sets:4}],
+    // C: 하체+복근
+    [{muscleKey:'legs',  subKey:'quad',  count:2, sets:3},
+     {muscleKey:'legs',  subKey:'hamstring', count:1, sets:3},
+     {muscleKey:'legs',  subKey:'glute', count:1, sets:3},
+     {muscleKey:'core',  subKey:'all',   count:1, sets:3}],
+    // D: 어깨+전완
+    [{muscleKey:'shoulder', subKey:'front', count:1, sets:3},
+     {muscleKey:'shoulder', subKey:'side',  count:1, sets:4},
+     {muscleKey:'shoulder', subKey:'rear',  count:1, sets:3},
+     {muscleKey:'arms',  subKey:'forearm',  count:1, sets:2}],
+  ],
+  5: [ // 5분할 부위별
+    [{muscleKey:'chest', subKey:'mid',   count:2, sets:3},
+     {muscleKey:'chest', subKey:'upper', count:1, sets:3}],
+    [{muscleKey:'back',  subKey:'lats',  count:3, sets:3}],
+    [{muscleKey:'legs',  subKey:'quad',  count:2, sets:3},
+     {muscleKey:'legs',  subKey:'hamstring', count:1, sets:3},
+     {muscleKey:'legs',  subKey:'glute', count:1, sets:3}],
+    [{muscleKey:'shoulder', subKey:'front', count:1, sets:3},
+     {muscleKey:'shoulder', subKey:'side',  count:1, sets:4},
+     {muscleKey:'shoulder', subKey:'rear',  count:1, sets:3}],
+    [{muscleKey:'arms',  subKey:'bicep', count:1, sets:4},
+     {muscleKey:'arms',  subKey:'tricep',count:1, sets:4},
+     {muscleKey:'arms',  subKey:'forearm',count:1,sets:2},
+     {muscleKey:'core',  subKey:'all',   count:1, sets:3}],
+  ],
+};
+// 6일 = 3분할 × 2, 7일 = 4분할 + 3분할
+
 const PURPOSE_CONFIG={
-  bulk:    {sets:4,reps:'6~8',  label:'증량',   desc:'고중량 저반복'},
-  cut:     {sets:4,reps:'12~15',label:'감량',   desc:'저중량 고반복'},
-  strength:{sets:5,reps:'3~5',  label:'체력향상',desc:'최고중량 저반복'},
-  maintain:{sets:3,reps:'10~12',label:'유지',   desc:'중간 중량/반복'},
+  muscle:{sets:3,reps:'12~15',label:'근육량 증가',desc:'체지방 유지하며 근육량 증가'},
+  bulk:  {sets:3,reps:'12~15',label:'벌크업',    desc:'체지방 감수하고 근육 최대 증가'},
+  cut:   {sets:3,reps:'12~15',label:'컷팅',      desc:'근육 유지하며 체지방 감소'},
+  diet:  {sets:3,reps:'12~15',label:'다이어트',  desc:'근손실 감수하고 체지방 크게 감소'},
 };
 const DIFF_LABEL={easy:'Easy',normal:'Normal',hard:'Hard'};
+const LEVEL_FILTER={
+  beginner:     d=>d==='easy',
+  intermediate: d=>d==='easy'||d==='normal',
+  advanced:     ()=>true,
+};
+const DAY_KO=['월','화','수','목','금','토','일'];
+const MUSCLE_KO={chest:'가슴',back:'등',legs:'하체',shoulder:'어깨',arms:'팔',core:'복근'};
 
-let state={days:null,purpose:null,focus:[]};
+let state={days:null,purpose:null,focus:[],gender:null,level:null};
 let routine=[];
 let currentDay=0;
 let detailBackPage='routine';
+let bfUnknown=false;
 const libExCache={};
 
-// ── SURVEY INIT ───────────────────────────────
+// ── 운동 선택 헬퍼 ────────────────────────────────────────
+// 특정 subKey에서 레벨에 맞는 운동을 위계순으로 n개 선택
+function pickExercises(muscleKey, subKey, count, sets, reps, focusedSubs){
+  const sub = DB[muscleKey].subs[subKey];
+  if(!sub) return [];
+  const levelOk = LEVEL_FILTER[state.level];
+
+  // 레벨에 맞는 장비가 있는 운동만, rank 99 제외
+  const available = sub.exercises
+    .filter(ex => ex.rank < 99)
+    .map(ex => {
+      const validEquip = ex.equipment.filter(eq => levelOk(eq.difficulty));
+      return validEquip.length > 0 ? {...ex, equipment: validEquip} : null;
+    })
+    .filter(Boolean)
+    .sort((a,b) => a.rank - b.rank);
+
+  // 집중 부위면 +1
+  const isFocused = focusedSubs && focusedSubs.includes(`${muscleKey}__${subKey}`);
+  const finalCount = isFocused ? count + 1 : count;
+  const finalSets = isFocused ? sets + 1 : sets;
+
+  return available.slice(0, finalCount).map(ex => ({
+    ...ex,
+    sets: finalSets,
+    reps: reps,
+    muscleKey,
+    subKey,
+  }));
+}
+
+// ── GENERATE ─────────────────────────────────────────────
+async function generateRoutine(){
+  document.getElementById('loading').classList.add('on');
+  await new Promise(r=>setTimeout(r,700));
+  document.getElementById('loading').classList.remove('on');
+
+  const cfg = PURPOSE_CONFIG[state.purpose];
+  const days = state.days;
+  const focusedSubs = state.focus;
+
+  // 스케줄 구성
+  let schedule = [];
+
+  if(days <= 2){
+    // 1일, 2일: 전신
+    for(let i=0;i<days;i++) schedule.push(SPLITS[1]);
+  } else if(days === 3){
+    schedule = SPLITS[3];
+  } else if(days === 4){
+    schedule = SPLITS[4];
+  } else if(days === 5){
+    schedule = SPLITS[5];
+  } else if(days === 6){
+    // 3분할 × 2
+    schedule = [...SPLITS[3], ...SPLITS[3]];
+  } else {
+    // 7일: 4분할 + 3분할
+    schedule = [...SPLITS[4], ...SPLITS[3]];
+  }
+
+  routine = DAY_KO.map((day, i) => {
+    if(i >= days) return {day, type:'rest'};
+
+    const dayPlan = days <= 2 ? SPLITS[1] : schedule[i];
+    const exercises = dayPlan.flatMap(slot =>
+      pickExercises(slot.muscleKey, slot.subKey, slot.count, slot.sets, cfg.reps, focusedSubs)
+    );
+
+    // 여성이면 하체 글루트 운동 볼륨 +1
+    const label = dayPlan.map(s => MUSCLE_KO[s.muscleKey]).filter((v,i,a)=>a.indexOf(v)===i).join(' + ');
+    return {day, type:'workout', label, exercises};
+  });
+
+  const tbMeta = document.getElementById('tb-meta');
+  if(tbMeta) tbMeta.textContent = `주 ${days}일 · ${cfg.label}`;
+  renderTabs(); renderDay(0); nav('routine');
+}
+
+// ── RENDER ────────────────────────────────────────────────
+function renderTabs(){
+  document.getElementById('day-tab-bar').innerHTML = routine.map((r,i) =>
+    `<div class="day-tab ${i===0?'active':''}" onclick="switchDay(${i},this)">
+      ${r.day} ${r.type==='rest'?'<span style="opacity:.4">(휴)</span>':''}
+    </div>`).join('');
+}
+function switchDay(idx,tab){
+  document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active'); currentDay=idx; renderDay(idx);
+}
+function renderDay(idx){
+  const r = routine[idx];
+  const c = document.getElementById('routine-content');
+  if(r.type==='rest'){
+    c.innerHTML=`<div class="day-hero"><div class="day-hero-title">${r.day}요일</div></div>
+      <div class="rest-view"><div class="rest-emoji">😴</div><div class="rest-title">휴식일</div>
+      <div class="rest-sub">오늘은 충분히 쉬어요.<br>적절한 휴식이 근성장을 완성합니다.</div></div>`;
+    return;
+  }
+  if(r.exercises.length===0){
+    c.innerHTML=`<div class="day-hero"><div class="day-hero-title">${r.day}요일</div></div>
+      <div class="rest-view"><div class="rest-emoji">⚠️</div><div class="rest-title">추천 운동 없음</div>
+      <div class="rest-sub">현재 레벨에 맞는 운동이 없어요.<br>레벨을 조정해보세요.</div></div>`;
+    return;
+  }
+  c.innerHTML=`
+    <div class="day-hero">
+      <div class="day-hero-title">${r.day}요일</div>
+      <div class="day-hero-sub">${r.label} · ${r.exercises.length}개 운동</div>
+    </div>
+    <div class="ex-list">
+      ${r.exercises.map((ex,i)=>`
+        <div class="ex-card" onclick="showDetail(${currentDay},${i},'routine')">
+          <div class="ex-info">
+            <div class="ex-name">${ex.name}</div>
+            <div class="ex-tags">
+              <span class="tag purple">${ex.sets}세트</span>
+              <span class="tag blue">${ex.reps}회</span>
+              ${ex.equipment.map(eq=>`<span class="tag">${eq.name}</span>`).join('')}
+            </div>
+          </div>
+          <div class="ex-chevron">›</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ── DETAIL ────────────────────────────────────────────────
+function showDetail(arg1, arg2, from){
+  let ex;
+  detailBackPage = from;
+  if(from==='routine'){
+    ex = routine[arg1].exercises[arg2];
+    document.getElementById('det-stats').innerHTML=`
+      <div class="stat-card"><div class="stat-lbl">SETS</div><div class="stat-num">${ex.sets}<span class="stat-unit">세트</span></div></div>
+      <div class="stat-card"><div class="stat-lbl">REPS</div><div class="stat-num">${ex.reps}<span class="stat-unit">회</span></div></div>`;
+  } else {
+    ex = arg1;
+    document.getElementById('det-stats').innerHTML='';
+  }
+  document.getElementById('det-name').textContent = ex.name;
+  document.getElementById('det-muscle').textContent = ex.muscle;
+
+  const diffs = ex.equipment.map(e=>e.difficulty);
+  const diffPriority = {easy:0,normal:1,hard:2};
+  const minDiff = diffs.length>0 ? diffs.reduce((a,b)=>diffPriority[a]<=diffPriority[b]?a:b) : 'easy';
+  const diffEl = document.getElementById('det-diff');
+  diffEl.className = `difficulty-tag ${minDiff}`;
+  diffEl.textContent = DIFF_LABEL[minDiff];
+
+  const noteEl = document.getElementById('det-note');
+  if(ex.equipment.length>0){
+    noteEl.innerHTML = `<div class="det-note-lbl">장비별 난이도</div>` +
+      ex.equipment.map(eq=>`
+        <span style="display:inline-flex;align-items:center;gap:5px;margin:3px 4px 3px 0">
+          <span class="difficulty-tag ${eq.difficulty}" style="padding:2px 7px">${DIFF_LABEL[eq.difficulty]}</span>
+          <span style="font-size:13px">${eq.name}</span>
+        </span>`).join('');
+    noteEl.style.display='block';
+  } else {
+    noteEl.style.display='none';
+  }
+
+  document.getElementById('yt-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name+' 자세')}`;
+  document.getElementById('det-back-btn').onclick = ()=>nav(detailBackPage);
+  document.getElementById('det-back-btn').textContent = from==='routine'?'← 루틴으로':'← 라이브러리';
+  nav('detail');
+}
+
+// ── LIBRARY ───────────────────────────────────────────────
+function renderLibrary(){
+  Object.keys(libExCache).forEach(k=>delete libExCache[k]);
+  document.getElementById('accordion-list').innerHTML = Object.entries(DB).map(([key,data])=>{
+    const total = Object.values(data.subs).reduce((a,s)=>a+s.exercises.length,0);
+    const subKeys = Object.keys(data.subs);
+    const hasSubs = subKeys.length>1;
+    return `<div class="acc-main" id="acc-${key}">
+      <div class="acc-main-header" onclick="toggleMain('${key}')">
+        <div class="acc-main-left">
+          <div class="acc-main-icon" style="background:${data.color};border:1px solid ${data.borderColor}">${data.icon}</div>
+          <div><div class="acc-main-name">${data.label}</div><div class="acc-main-count">${total}개 운동</div></div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-main-body">
+        ${subKeys.map(sk=>{
+          const sub=data.subs[sk];
+          return hasSubs
+            ?`<div class="acc-sub" id="acc-${key}-${sk}">
+                <div class="acc-sub-header" onclick="toggleSub('${key}','${sk}')">
+                  <div style="display:flex;align-items:center;gap:6px;flex:1">
+                    <span class="acc-sub-name">${sub.label}</span>
+                    <span class="acc-sub-count">${sub.exercises.length}개</span>
+                  </div>
+                  <span class="acc-sub-arrow">▾</span>
+                </div>
+                <div class="acc-sub-body">${renderExItems(sub.exercises)}</div>
+              </div>`
+            :`<div style="border-top:1px solid var(--border)">${renderExItems(sub.exercises)}</div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderExItems(exercises){
+  return exercises.map(ex=>{
+    const ck='ex_'+Object.keys(libExCache).length;
+    libExCache[ck]=ex;
+    return `<div class="lib-ex-item">
+      <div class="lib-ex-left">
+        <div class="lib-ex-name">${ex.name}</div>
+        <div class="lib-ex-tags">
+          ${ex.equipment.length>0
+            ?ex.equipment.map(eq=>`<span class="equip-tag" onclick="showDetailLib('${ck}')"><span class="difficulty-tag ${eq.difficulty}" style="padding:1px 5px;font-size:9px">${DIFF_LABEL[eq.difficulty]}</span> ${eq.name}</span>`).join('')
+            :`<span class="equip-tag" onclick="showDetailLib('${ck}')">상세보기</span>`}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function showDetailLib(ck){showDetail(libExCache[ck],null,'library');}
+function toggleMain(k){document.getElementById('acc-'+k).classList.toggle('open');}
+function toggleSub(k,sk){document.getElementById(`acc-${k}-${sk}`).classList.toggle('open');}
+
+// ── SURVEY ────────────────────────────────────────────────
 (()=>{
   const g=document.getElementById('day-grid');
   for(let i=1;i<=7;i++){
@@ -668,7 +803,9 @@ const libExCache={};
     b.onclick=()=>selectDay(b,i);
     g.appendChild(b);
   }
+  document.getElementById('input-bf').addEventListener('input',updateBfRecommend);
   const wrap=document.getElementById('survey-muscle-wrap');
+  const ROUTINE_KEYS=['chest','back','legs','shoulder','arms','core'];
   ROUTINE_KEYS.forEach(key=>{
     const data=DB[key];
     const subKeys=Object.keys(data.subs);
@@ -687,178 +824,41 @@ const libExCache={};
   });
 })();
 
-function selectDay(btn,d){
-  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');state.days=d;checkReady();
-}
-function selectPurpose(btn,p){
-  document.querySelectorAll('.purpose-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');state.purpose=p;checkReady();
-}
-function toggleSubMuscle(btn,key){
-  btn.classList.toggle('selected');
-  state.focus=btn.classList.contains('selected')?[...state.focus,key]:state.focus.filter(x=>x!==key);
-}
-function checkReady(){
-  document.getElementById('gen-btn').disabled=!(state.days&&state.purpose);
-}
+function selectGender(btn,g){document.querySelectorAll('.gender-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state.gender=g;updateBfRecommend();checkReady();}
+function selectLevel(btn,l){document.querySelectorAll('.level-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state.level=l;checkReady();}
+function selectDay(btn,d){document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state.days=d;checkReady();}
+function selectPurpose(btn,p){document.querySelectorAll('.purpose-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state.purpose=p;checkReady();}
+function toggleSubMuscle(btn,key){btn.classList.toggle('selected');state.focus=btn.classList.contains('selected')?[...state.focus,key]:state.focus.filter(x=>x!==key);}
+function checkReady(){document.getElementById('gen-btn').disabled=!(state.days&&state.purpose&&state.gender&&state.level);}
 
-// ── GENERATE ──────────────────────────────────
-async function generateRoutine(){
-  document.getElementById('loading').classList.add('on');
-  await new Promise(r=>setTimeout(r,700));
-  document.getElementById('loading').classList.remove('on');
-  const cfg=PURPOSE_CONFIG[state.purpose];
-  const focusedMain=state.focus.length>0?[...new Set(state.focus.map(k=>k.split('__')[0]))]:ROUTINE_KEYS;
-  const otherMain=ROUTINE_KEYS.filter(k=>!focusedMain.includes(k));
-  const pri=[...focusedMain,...otherMain];
-  routine=DAY_KO.map((day,i)=>{
-    if(i>=state.days)return{day,type:'rest'};
-    const muscleKey=pri[i%pri.length];
-    const allEx=Object.values(DB[muscleKey].subs).flatMap(s=>s.exercises);
-    const exCount=focusedMain.includes(muscleKey)?4:3;
-    return{day,type:'workout',muscleKey,exercises:allEx.slice(0,exCount).map(ex=>({...ex,sets:cfg.sets,reps:cfg.reps}))};
-  });
-  document.getElementById('tb-meta').textContent=`주 ${state.days}일 · ${cfg.label} · ${cfg.desc}`;
-  renderTabs();renderDay(0);nav('routine');
+function toggleBfUnknown(){
+  bfUnknown=!bfUnknown;
+  const btn=document.getElementById('bf-unknown-btn');
+  const input=document.getElementById('input-bf');
+  const icon=document.getElementById('bf-unknown-icon');
+  if(bfUnknown){btn.classList.add('active');icon.textContent='☑';input.disabled=true;input.value='';document.getElementById('bf-recommend').style.display='none';}
+  else{btn.classList.remove('active');icon.textContent='☐';input.disabled=false;}
 }
-
-function renderTabs(){
-  document.getElementById('day-tab-bar').innerHTML=routine.map((r,i)=>`
-    <div class="day-tab ${i===0?'active':''}" onclick="switchDay(${i},this)">
-      ${r.day} ${r.type==='rest'?'<span style="opacity:.4">(휴)</span>':''}
-    </div>`).join('');
-}
-function switchDay(idx,tab){
-  document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));
-  tab.classList.add('active');currentDay=idx;renderDay(idx);
-}
-function renderDay(idx){
-  const r=routine[idx];
-  const c=document.getElementById('routine-content');
-  if(r.type==='rest'){
-    c.innerHTML=`
-      <div class="day-hero"><div class="day-hero-title">${r.day}요일</div></div>
-      <div class="rest-view">
-        <div class="rest-emoji">😴</div>
-        <div class="rest-title">휴식일</div>
-        <div class="rest-sub">오늘은 충분히 쉬어요.<br>적절한 휴식이 근성장을 완성합니다.</div>
-      </div>`;
-    return;
-  }
-  c.innerHTML=`
-    <div class="day-hero">
-      <div class="day-hero-title">${r.day}요일 — ${MUSCLE_KO[r.muscleKey]||r.muscleKey}</div>
-      <div class="day-hero-sub">${r.exercises.length}개 운동</div>
-    </div>
-    <div class="ex-list">
-      ${r.exercises.map((ex,i)=>`
-        <div class="ex-card" onclick="showDetail(${currentDay},${i},'routine')">
-          <div class="ex-info">
-            <div class="ex-name">${ex.name}</div>
-            <div class="ex-tags">
-              <span class="tag purple">${ex.sets}세트</span>
-              <span class="tag blue">${ex.reps}회</span>
-              <span class="difficulty-tag ${ex.difficulty}" style="padding:3px 9px">${DIFF_LABEL[ex.difficulty]}</span>
-            </div>
-          </div>
-          <div class="ex-chevron">›</div>
-        </div>`).join('')}
-    </div>`;
-}
-
-// ── DETAIL ────────────────────────────────────
-function showDetail(arg1,arg2,from){
-  let ex;
-  detailBackPage=from;
-  if(from==='routine'){
-    ex=routine[arg1].exercises[arg2];
-    document.getElementById('det-stats').innerHTML=`
-      <div class="stat-card"><div class="stat-lbl">SETS</div><div class="stat-num">${ex.sets}<span class="stat-unit">세트</span></div></div>
-      <div class="stat-card"><div class="stat-lbl">REPS</div><div class="stat-num">${ex.reps}<span class="stat-unit">회</span></div></div>`;
+function updateBfRecommend(){
+  if(bfUnknown)return;
+  const bf=parseFloat(document.getElementById('input-bf').value);
+  const rec=document.getElementById('bf-recommend');
+  if(!bf||!state.gender){rec.style.display='none';return;}
+  let type,msg;
+  if(state.gender==='male'){
+    if(bf>=25){type='diet';msg='💡 체지방률이 높아요 — 다이어트를 추천해요';}
+    else if(bf>=20){type='cut';msg='💡 체지방률이 적당해요 — 컷팅을 추천해요';}
+    else if(bf>=10){type='muscle';msg='💡 체지방률이 적당해요 — 근육량 증가를 추천해요';}
+    else{type='bulk';msg='💡 체지방률이 매우 낮아요 — 벌크업을 추천해요';}
   } else {
-    ex=arg1;
-    document.getElementById('det-stats').innerHTML=`
-      <div class="stat-card" style="grid-column:1/-1"><div class="stat-lbl">NOTE</div><div style="font-size:13px;color:var(--text2);margin-top:4px">루틴 생성기에서 세트/횟수를 확인하세요</div></div>`;
+    if(bf>=33){type='diet';msg='💡 체지방률이 높아요 — 다이어트를 추천해요';}
+    else if(bf>=28){type='cut';msg='💡 체지방률이 적당해요 — 컷팅을 추천해요';}
+    else if(bf>=17){type='muscle';msg='💡 체지방률이 적당해요 — 근육량 증가를 추천해요';}
+    else{type='bulk';msg='💡 체지방률이 매우 낮아요 — 벌크업을 추천해요';}
   }
-  document.getElementById('det-name').textContent=ex.name;
-  document.getElementById('det-muscle').textContent=ex.muscle;
-  const diffEl=document.getElementById('det-diff');
-  diffEl.className=`difficulty-tag ${ex.difficulty}`;
-  diffEl.textContent=DIFF_LABEL[ex.difficulty];
-  document.getElementById('det-back-btn').onclick=()=>nav(detailBackPage);
-  document.getElementById('det-back-btn').textContent=from==='routine'?'← 루틴으로':'← 라이브러리';
-  nav('detail');
+  rec.className='bf-recommend '+type;rec.textContent=msg;rec.style.display='flex';
 }
 
-// ── LIBRARY ───────────────────────────────────
-function renderLibrary(){
-  Object.keys(libExCache).forEach(k=>delete libExCache[k]);
-  const list=document.getElementById('accordion-list');
-  list.innerHTML=Object.entries(DB).map(([key,data])=>{
-    const total=Object.values(data.subs).reduce((a,s)=>a+s.exercises.length,0);
-    const subKeys=Object.keys(data.subs);
-    const hasSubs=subKeys.length>1;
-    return `
-      <div class="acc-main" id="acc-${key}">
-        <div class="acc-main-header" onclick="toggleMain('${key}')">
-          <div class="acc-main-left">
-            <div class="acc-main-icon" style="background:${data.color};border:1px solid ${data.borderColor}">${data.icon}</div>
-            <div>
-              <div class="acc-main-name">${data.label}</div>
-              <div class="acc-main-count">${total}개 운동</div>
-            </div>
-          </div>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-main-body">
-          ${subKeys.map(sk=>{
-            const sub=data.subs[sk];
-            return hasSubs?`
-              <div class="acc-sub" id="acc-${key}-${sk}">
-                <div class="acc-sub-header" onclick="toggleSub('${key}','${sk}')">
-                  <div style="display:flex;align-items:center;gap:6px;flex:1">
-                    <span class="acc-sub-name">${sub.label}</span>
-                    <span class="acc-sub-count">${sub.exercises.length}개</span>
-                  </div>
-                  <span class="acc-sub-arrow">▾</span>
-                </div>
-                <div class="acc-sub-body">${renderExItems(sub.exercises)}</div>
-              </div>`:
-            `<div style="border-top:1px solid var(--border)">${renderExItems(sub.exercises)}</div>`;
-          }).join('')}
-        </div>
-      </div>`;
-  }).join('');
-}
-
-function renderExItems(exercises){
-  return exercises.map(ex=>{
-    const cacheKey='ex_'+Object.keys(libExCache).length;
-    libExCache[cacheKey]=ex;
-    return `
-    <div class="lib-ex-item">
-      <div class="lib-ex-left">
-        <div class="lib-ex-name">${ex.name}</div>
-        <div class="lib-ex-tags">
-          <span class="difficulty-tag ${ex.difficulty}" style="font-size:10px;padding:2px 8px">${DIFF_LABEL[ex.difficulty]}</span>
-          ${ex.equipment.length>0
-            ?ex.equipment.map(eq=>`<span class="equip-tag" onclick="showDetailLib('${cacheKey}')">${eq}</span>`).join('')
-            :`<span class="equip-tag" onclick="showDetailLib('${cacheKey}')">상세보기</span>`
-          }
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function showDetailLib(cacheKey){
-  showDetail(libExCache[cacheKey],null,'library');
-}
-function toggleMain(key){document.getElementById('acc-'+key).classList.toggle('open');}
-function toggleSub(key,sk){document.getElementById(`acc-${key}-${sk}`).classList.toggle('open');}
-
-// ── NAV ───────────────────────────────────────
 function nav(p){
   if(p==='library')renderLibrary();
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
